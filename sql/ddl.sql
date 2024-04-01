@@ -54,3 +54,4 @@ RENAME COLUMN long_url TO url;
 -- TO CHANGE DATA TYPE OF COLUMN
 ALTER TABLE urls
 ALTER COLUMN view_count TYPE decimal;
+
