@@ -1,0 +1,16 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "todo: nodejs and database",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js"
+  },
+  "author": "MUHAMMAD AMINUDDIN SHAH",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
