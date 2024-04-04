@@ -1,32 +1,29 @@
 import express from "express";
 
+import allRequest from "./controller/health.js";
+import notFound from "./controller/notFound.js";
+import { testConnection } from "./database/connection.js";
+
 const app = express();
 const PORT = 1003;
 
-app.get("/", (req,res) => {
+// Middleware
+// to extract json request data use express.json()
+app.use(express.json());
 
-    // what res.status does ?
-    // res.status is to set HTTP status code for response to client
-    // this status is response for client from server
-    // this is server, we request and send status code to client
+// Middleware
+// to extract HTML form to server using express.urlencoded({extended: true})
+app.use(express.urlencoded({extended: true}));
 
-    // what is .json() used for
-    // json() is used to send message and data from server to client-sides
-    res.status(200).json({
-        message: "hello there!",
-        data: true
-    })
-})
+// database
+testConnection();
 
+app.get("/", allRequest.get);
+app.post("/", allRequest.post);
 
-// why use app.use()
-// app.use() is middleware, used to handle request for not exist route
+// why use app.use() ,app.use() is middleware, used to handle request for not exist route
 // so if the above route cannot handle not state request, below middleware will handle the request and response to client
-app.use((req,res) => {
-    res.status(404).json({
-        message: "not exist lah bro"
-    })
-})
+app.use(notFound)
 
 app.listen(PORT, () => {
     console.log("successfully connected")
