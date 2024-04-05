@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch index.js",
+    "dev": "powershell.exe -Command \"$env:PGHOST='localhost'; $env:PGUSER='postgres'; $env:PGPASSWORD='qwerty123'; $env:PGDATABASE='todo-app-april-2024'; node --watch index.js\"",
     "start": "node index.js"
   },
   "author": "MUHAMMAD AMINUDDIN SHAH",

@@ -1,17 +1,18 @@
 import packages from 'pg';
+import createTable from '../modal/user.js';
+import createTodo from '../modal/todo.js';
+
 const { Pool } = packages;
  
-const pool = new Pool({
-  host: '127.0.0.1',
-  user: 'postgres',
-  password: "qwerty123",
-  database: 'todo-app-april-2024',
-  
+export const pool = new Pool({
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,  
 
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
-
 })
 
 export async function testConnection(){
@@ -34,6 +35,12 @@ export async function testConnection(){
         console.log(timeDB)
         console.log(time)
 
+        // create database table
+        await createTable();
+
+        // 
+        await createTodo();
+
     } catch (err){
 
         // if rejected
@@ -41,3 +48,5 @@ export async function testConnection(){
         console.log(err)
     }
 }
+
+// export default testConnection;

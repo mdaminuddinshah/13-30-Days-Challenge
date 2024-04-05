@@ -11,6 +11,9 @@ const PORT = 1003;
 // to extract json request data use express.json()
 app.use(express.json());
 
+const TEST = process.env.TEST;
+console.log(TEST);
+
 // Middleware
 // to extract HTML form to server using express.urlencoded({extended: true})
 app.use(express.urlencoded({extended: true}));
