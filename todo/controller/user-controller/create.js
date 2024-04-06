@@ -9,12 +9,41 @@ const query = `
 
 async function addToColumn(req,res){
 
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password;
-    const is_admin = req.body.is_admin;
-
     try{
+
+        const username = req.body.username;
+        const email = req.body.email;
+        const password = req.body.password;
+        const is_admin = req.body.is_admin;
+
+         // validate req.body
+         const missingFields = [];
+         if (!username) {
+             missingFields.push("username");
+         }
+         if (!email) {
+             missingFields.push("email");
+         }
+         if (!password) {
+             missingFields.push("password");
+         }
+ 
+         if (missingFields.length > 0) {
+             return res.status(400).json({
+                 message: `Please provide ${missingFields.join(", ")}`
+             });
+         }
+
+        // verify email with regex 
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const validateEmail = emailRegex.test(email);
+
+        if(!validateEmail){
+            res.status(400).json({
+                message: "invalid email address"
+            })
+        };
+
 
         // this await pool.query(query, [username, email, password, is_admin]);
         // username, email, password, is_admin is array 
