@@ -1,7 +1,7 @@
 import { pool } from "../database/dbinit.js";
 
 const queryCreateTodoTable = `
-    CREATE TABLE todos(
+    CREATE TABLE IF NOT EXISTS todos(
         id SERIAL PRIMARY KEY,
         text VARCHAR(255) NOT NULL,
         status BOOLEAN DEFAULT FALSE,

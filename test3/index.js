@@ -3,6 +3,7 @@ import { get } from "./controller/health.js";
 import { post } from "./controller/health.js";
 import { notFound } from "./controller/notFound.js";
 import { connectDatabase } from "./database/dbinit.js";
+import { insertValuesToTableUsers } from "./controller/users-controller/create.js";
 
 const app = express();
 const PORT = 1006;
@@ -16,6 +17,7 @@ connectDatabase();
 
 app.get("/", get);
 app.post("/", post);
+app.post("/users", insertValuesToTableUsers);
 
 app.use("/", notFound)
 
