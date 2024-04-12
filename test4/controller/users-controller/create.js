@@ -61,6 +61,10 @@ export async function createUser(req,res){
 
         res.status(500).json({
             message: "FAILED CREATE USER",
+
+            // for test
+            eror: error,
+            reason: error.message
         })
 
         console.error("FAILED CREATE USER", error.message)
