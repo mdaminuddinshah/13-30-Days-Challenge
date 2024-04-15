@@ -1,4 +1,5 @@
 import { pool } from "../../database/DBinit.js";
+import bcrypt from "bcrypt";
 
 const InsertTable = `
     INSERT INTO users(username, password, email, is_admin)
@@ -8,6 +9,9 @@ const InsertTable = `
 export async function createUser(req,res){
 
     try{
+
+        
+
         const username = req.body.username;
         const password = req.body.password;
         const email = req.body.email;
@@ -47,11 +51,15 @@ export async function createUser(req,res){
             console.log("EMAIL FORMAT WRONG")
             return;
         }
-
         // VALIDATION FOR EMAIL FORMAT => ABOVE
 
+        // HASH A PASSWORD WITH BCRYPT
+        // BCRYPT
+        const saltrounds = 13;
+        const salt = bcrypt.genSaltSync(saltrounds);
+        const hash = bcrypt.hashSync(password, salt);
 
-        await pool.query(InsertTable, [username, password, email, is_admin]);
+        await pool.query(InsertTable, [username, hash, email, is_admin]);
         res.status(200).json({
             message: "SUCCESS CREATE USER"
         })

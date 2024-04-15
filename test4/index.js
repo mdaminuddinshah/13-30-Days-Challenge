@@ -21,7 +21,7 @@ connection();
 
 app.get("/", checkConnection);
 app.post("/", editConnection);
-app.post("/users", createUser);
+app.post("/register", createUser);
 app.get("/users", readAllUsers);
 app.get("/users/:hello", readUserById);
 app.put("/users/:id", updateUser);
