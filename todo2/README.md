@@ -12,3 +12,4 @@
 12. create folder model utk create table sahaja. model folder utk table.
 13. utk create table, perlukan pool or passport dari database. create user.js utk table user and import pool dari database.
 14. pastu, buat satu variable utk query database, maksudnya variable utk create table dgn format postgresql
+15. then, import variable tadi ke dlm try/catch database. 
